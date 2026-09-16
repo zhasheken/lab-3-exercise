@@ -2,6 +2,7 @@
    access it through the control block, if we're not aliasing)?
 With the stored pointer, we have direct access through * and ->, versus going through the control block 
 to find the object with managedAddress(), which is slower with the virtual call.
+** AI assisted, see submission
 
 2. What is a disadvantage of having the stored pointer (instead of going through the control block)?
 We have the extra pointer instead of just accessing the control block, which takes up more memory and adds complexity to maintain.
