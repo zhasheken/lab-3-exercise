@@ -85,7 +85,7 @@ int main() {
     SharedPtr<int> made = makeSharedBasic<int>(10);
     assert(*made == 10 && made.useCount() == 1);
 
-    // aliasing constructor: shares the group but points at a member
+    // aliasing constructor
     struct Pair { int first; int second; };
     SharedPtr<Pair> pairPtr = makeSharedBasic<Pair>(Pair{1, 2});
     SharedPtr<int> secondPtr(pairPtr, &pairPtr->second);

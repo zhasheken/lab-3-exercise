@@ -58,9 +58,9 @@ public:
     template<class U> friend class SharedPtr;
     // aliasing constructor
     // same control block but manages a different pointer
+    // assisted by claude (details in submission text)
     template<class U>
-    SharedPtr(const SharedPtr<U>& other, T* p)
-        : ptr(p), controlBlock(other.controlBlock) {
+    SharedPtr(const SharedPtr<U>& other, T* p) : ptr(p), controlBlock(other.controlBlock) {
         if (controlBlock != nullptr) {
             controlBlock->increment();
         }
