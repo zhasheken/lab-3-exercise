@@ -1,6 +1,16 @@
 1. What is a benefit (besides aliasing) of our `SharedPtr<T>` directly storing a “stored pointer” (we could always just
    access it through the control block, if we're not aliasing)?
+With the stored pointer, we have direct access through * and ->, versus going through the control block 
+to find the object with managedAddress(), which is slower with the virtual call.
+
 2. What is a disadvantage of having the stored pointer (instead of going through the control block)?
+We have the extra pointer instead of just accessing the control block, which takes up more memory and adds complexity to maintain.
+
 3. From a system design/architecture perspective, what disadvantages are there to using shared pointers?
+Because it requires extra memory and tracking within the block, it is a more complicated system and may be difficult to manage.
+There are multiple owners of an object, which can make it difficult to track ownership and lifetimes. It may cause memory leaks if made incorrectly.
+
 4. From a performance perspective, what disadvantages there are to using shared pointers (say, versus a unique pointer
    or raw pointer)?
+We have to allocate additional memory for the control block. There are also costs to computing and keeping track
+of all the references in this control block.
